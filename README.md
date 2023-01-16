@@ -1,4 +1,4 @@
-# Capacitacion en VuejS
+# Capacitación en VuejS
 
 ## Instalar Laravel
 
@@ -150,17 +150,168 @@ Vite para que "renderice" nuestra pagina en tiempo real
 npm run dev
 ```
 
-## Glosario
+## Extensiones Recomendadas
 
-### DOM
+-   Dev-tools
 
-> Document Object Model
+    ![Dev-tools](./.doc.assets/dev-tools.png)
+    [Link dev-tools](https://devtools.vuejs.org/)
 
-Es el mecanimso por el cual podemos intercatuar con el html de una pagina
-a traves de javascript
+-   Vetur
 
----
+    ![Vetur](./.doc.assets/vetur.png)
+    [Link dev-tools](https://devtools.vuejs.org/)
 
-Vue Inyecta su codigo "template" dentro del DOM.
+# VUE3
 
----
+## Temario
+
+-   Estructura
+-   Data
+-   Metodos (Mehtods)
+-   Computed
+-   Watchers
+-   Condicionales
+-   v-model
+-   Eventos
+-   listas (ciclos)
+
+## Estructura
+
+Todos los componentes de Vue pueden tener 3 areas principales
+
+```{Vue}
+<template>
+// Aqui va Html
+</template>
+
+<script>
+export default {
+    // Aqui va javascript
+};
+</script>
+
+<style>
+// Aqui va CSS
+</style>
+```
+
+## Data
+
+La primer parte de cualquier Componente es los datos que maneja: sus Variables
+
+```{Vue}
+...
+<script>
+export default {
+    data() {
+        return {
+            var1: 'valor1',
+            ...
+        }
+    },
+};
+</script>
+...
+```
+
+Esta data la podemos usar dentro de nuestro componente por medio de la "interpolación"
+dentro del "template" o a través de la palabra "this[^1: En options API]" dentro de nuestro script
+
+```{Vue}
+<template>
+    <h1>{{ var1 }}</h1>
+</template>
+<script>
+export default {
+    data() {
+        return {
+            var1: 'valor1',
+        }
+    },
+};
+</script>
+...
+```
+
+## Metodos
+
+Dentro de la logica de nuestro componente necesitmaos definir acciones (metodos)
+
+```{Vue}
+...
+<script>
+export default {
+    ...
+    methods: {
+        dameAlgo() {
+            // Este metodo nos regresa el valor de var1
+            // y le agrega un "algo al final"
+            return this.var1 + "algo";
+        }
+    },
+};
+</script>
+...
+```
+
+## Computed
+
+Vue nos permite usar un tipo especial de metodo para tener "variables"
+que cambien dinamicamente despues de ser calculados.
+
+```{Vue}
+<template>
+    <h1>El valor de {{ var1 }} es:{{ var2 }}</h1>
+</template>
+<script>
+export default {
+    data() {
+        return {
+            var1: 'valor1',
+            valor: 2,
+            tasa: 1.16,
+        }
+    },
+    computed: {
+        var2() {
+            return this.valor * this.tasa;
+        }
+    },
+};
+</script>
+...
+```
+
+## Watchers
+
+Como parte de la reactividad de vue nos permite hacer "observadores" que esten
+vigilando el estado de nuestras variables
+
+```{Vue}
+<template>
+    <h1>Hola {{ nombreCompleto }}</h1>
+</template>
+<script>
+export default {
+    data() {
+        return {
+            nombre: 'Santiago',
+            apellido: "Orozco",
+        }
+    },
+    computed: {
+        nombreCompleto() {
+            return `${this.nombre} ${this.apellido}`
+        }
+    },
+    watch: {
+        nombreCompleto(newVal, oldVal) {
+            console.log({newVal, oldVal})
+            alert(newVal)
+        }
+    }
+};
+</script>
+...
+```
