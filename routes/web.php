@@ -3,6 +3,7 @@
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,3 +34,12 @@ Route::middleware([
         return Inertia::render('Dashboard');
     })->name('dashboard');
 });
+
+Route::get("test", fn() => env('VARIABLE_SOS'));
+
+Route::post("dame", function(Request $request) {
+    $data = $request->validate(['nombre'=> 'required|boolean']);
+    
+    dd($data->nombre);
+    return back()->with([]);
+})->name("capPost");
