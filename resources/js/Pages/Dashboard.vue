@@ -12,25 +12,24 @@ export default {
             producto: "Hello world",
             precio: 100,
             iva: 1.16,
-        }
+        };
     },
     methods: {
         diHola() {
             console.log("hola");
-        }
+        },
     },
     computed: {
         precioCalculado() {
-            console.log("se recalculo el precio")
+            console.log("se recalculo el precio");
             return this.precio * this.iva;
-        }
+        },
     },
     watch: {
         precio(newVal, oldVal) {
             console.log(`se actualizo el precio de ${oldVal} a ${newVal}`);
-        }
+        },
     },
-    
 };
 </script>
 
