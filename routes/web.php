@@ -4,6 +4,7 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use Illuminate\Http\Request;
+use App\Http\Controllers\EntradaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,11 +36,9 @@ Route::middleware([
     })->name('dashboard');
 });
 
-Route::get("test", fn() => env('VARIABLE_SOS'));
-
-Route::post("dame", function(Request $request) {
-    $data = $request->validate(['nombre'=> 'required|boolean']);
-    
-    dd($data->nombre);
-    return back()->with([]);
-})->name("capPost");
+Route::middleware('auth:sanctum')
+    ->name('RutasPropias.')
+    ->prefix('RutasVue')
+    ->group(function () {
+        Route::get('/',[EntradaController::class, 'index'])->name("index");
+    });

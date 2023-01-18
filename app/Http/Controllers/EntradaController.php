@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Entrada;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class EntradaController extends Controller
 {
@@ -14,18 +15,12 @@ class EntradaController extends Controller
      */
     public function index()
     {
-        //
+
+        return Inertia::render('Dashboard',[
+            'entradas' => Entrada::all(),
+        ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -34,28 +29,6 @@ class EntradaController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Entrada  $entrada
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Entrada $entrada)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Entrada  $entrada
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Entrada $entrada)
     {
         //
     }

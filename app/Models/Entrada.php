@@ -9,6 +9,7 @@ class Entrada extends Model
 {
     use HasFactory;
 
+    protected $table = 'entradas';
 
     protected $fillable = [
         'valor',
