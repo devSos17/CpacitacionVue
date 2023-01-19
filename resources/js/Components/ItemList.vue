@@ -1,7 +1,7 @@
 <template>
     <template v-if="datos">
         <div v-for="(dato, i) in datos" :key="i">
-            <Item :dato="dato" />
+            <Item :dato="dato" @computado="bubble"/>
         </div>
     </template>
 </template>
@@ -15,6 +15,12 @@ export default {
     props: {
         datos: [],
     },
+    methods:{
+        bubble(data){
+            this.$emits('computado', data)
+        }
+    },
+    emits:['computado']
 };
 </script>
 

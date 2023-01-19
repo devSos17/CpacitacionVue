@@ -1,16 +1,45 @@
 <template>
     <div class="container">
-        <p>Hoy veremos Components</p>
+        <Chart
+            :data="datosProcesados"
+        />
     </div>
 </template>
 
 <script>
+import Chart from "@/Components/Chart.vue";
 export default {
+    data(){
+        return {
+            labelsStaicos: ['persona', 'institucion', 'cosa'],
+        }
+    },
     props: {
         entradas: {
             type: Array,
             default: [],
         },
+    },
+    computed: {
+        datosProcesados(newVal){
+            let datos = { 
+                labels: this.labelsStaicos,
+                // datasets:[{data:[]}] 
+                };
+            let i = 0, data = [];
+            this.labelsStaicos.forEach((label)=>{
+                data[i] = this.entradas
+                .filter((entrada)=> entrada.tipo == label)
+                .reduce((acc,current)=> acc + current.cantidad,0)    
+                i++;
+            });
+            datos.datasets = [{data:data}];
+            console.log({datos})
+            return datos;
+        }
+    },
+    components: {
+        Chart,
     },
 };
 </script>

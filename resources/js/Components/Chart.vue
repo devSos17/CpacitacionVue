@@ -1,5 +1,9 @@
 <template>
     <Bar :data="data" :options="options" />
+        <Doughnut :data="data" :options="options" />
+    <div>
+        <pre>{{ data }}</pre>
+    </div>
 </template>
 
 <script lang="ts">
@@ -12,7 +16,7 @@ import {
     CategoryScale,
     LinearScale,
 } from "chart.js";
-import { Bar } from "vue-chartjs";
+import { Bar, Doughnut } from "vue-chartjs";
 
 ChartJS.register(
     CategoryScale,
@@ -24,20 +28,24 @@ ChartJS.register(
 );
 
 export default {
-    name: "App",
     components: {
         Bar,
+        Doughnut,
     },
-    data() {
-        return {
-            data: {
+    props: {
+        data: {
+            type: Object,
+            default:{
                 labels: ["January", "February", "March"],
                 datasets: [{ data: [40, 20, 12] }],
             },
             options: {
-                responsive: true,
+                type: Object,
+                default: {
+                    responsive: true,
+                },
             },
-        };
-    },
+        }
+    }
 };
 </script>
