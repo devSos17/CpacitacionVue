@@ -1,33 +1,28 @@
 <template>
-    <div v-for="(entradas, indice) of entradas" :key="indice">
-        <p>{{indice}}:{{entradas}}</p>
+    <div class="container">
+        <p>Hoy veremos Components</p>
     </div>
 </template>
 
 <script>
 export default {
-    data() {
-        return {
-            objeto: {
-                'primera_llave': 1,
-                segundaLLave: "algo",
-                'tercera': 1.0,
-            }
-        };
-    },
-    props:{
+    props: {
         entradas: {
             type: Array,
             default: [],
         },
     },
-    methods: {},
-    computed: {},
-    watch: {},
 };
 </script>
 
 <style>
+.container {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
 .rojoGordito {
     color: red;
     padding: 50px 50px;
